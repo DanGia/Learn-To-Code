@@ -59,6 +59,7 @@ node *insertNode(node *head, node *newNode, int position)
     // TO DO
     node *cur = head;
     int pos = 1;
+    bool flag = false;
     while (cur->next != nullptr)
     {
         if (position == 1)
@@ -66,6 +67,7 @@ node *insertNode(node *head, node *newNode, int position)
             newNode->next = head;
             head = newNode;
             cur = newNode->next;
+            flag = true;
             break;
         }
         else if (pos + 1 == position)
@@ -73,13 +75,18 @@ node *insertNode(node *head, node *newNode, int position)
             newNode->next = cur->next;
             cur->next = newNode;
             cur = newNode->next;
-
+            flag = true;
             break;
         }
         cur = cur->next;
         pos++;
     }
-
+    if (!flag)
+    {
+        newNode->next = cur->next;
+        cur->next = newNode;
+        cur = newNode->next;
+    }
     return head;
 }
 void print(node *head)
