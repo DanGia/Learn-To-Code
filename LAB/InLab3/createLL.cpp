@@ -5,11 +5,11 @@ struct node
     int data;
     node *next;
 };
-node *pushback(node *&head, int x)
+node *pushback(node *head, int x)
 {
     node *p = new node;
     p->data = x;
-    p->next = head->next;
+    // p->next = head->next;
     head->next = p;
     return p;
 }
@@ -18,7 +18,7 @@ node *createLinkedList(int n)
     // TO DO
     node *head = new node;
     node *cur = new node;
-    node *pre = new node;
+    // node *pre = new node;
 
     for (int i = 0; i < n; i++)
     {

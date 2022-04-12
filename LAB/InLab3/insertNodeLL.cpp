@@ -60,6 +60,10 @@ node *insertNode(node *head, node *newNode, int position)
     node *cur = head;
     int pos = 1;
     bool flag = false;
+    if (position <= 0)
+    {
+        return head;
+    }
     while (cur->next != nullptr)
     {
         if (position == 1)

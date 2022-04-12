@@ -1,61 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int t, r, c;
-const int MAXN = 2 * 10 + 2;
-char a[MAXN][MAXN];
-
-void solve()
+int gcd(int a, int b)
 {
-    cin >> r >> c;
-    a[0][0] = a[0][1] = a[1][0] = a[1][1] = '.';
-    int i = 0, j = 2;
-    while (j < 2 * c + 1)
+    a = abs(a);
+    b = abs(b);
+    while (a != 0 && b != 0)
     {
-        a[0][j] = '+';
-        a[0][j + 1] = '-';
-        j += 2;
-    }
-    j = 2;
-    while (j < 2 * c + 1)
-    {
-        a[1][j] = '|';
-        a[1][j + 1] = '.';
-        j += 2;
-    }
-    for (int i = 2; i < 2 * r + 1; i++)
-    {
-        for (int j = 0; j < 2 * c + 1; j += 2)
+        if (a >= b)
         {
-            if (i % 2 == 0)
-            {
-                a[i][j] = '+';
-                a[i][j + 1] = '-';
-            }
-            else
-            {
-                a[i][j] = '|';
-                a[i][j + 1] = '.';
-            }
+            a %= b;
+        }
+        else
+            b %= a;
+    }
+    return a + b;
+}
+
+int calG(int N)
+{
+    int g = 0;
+    for (int i = 1; i < N; i++)
+    {
+        for (int j = i + 1; j <= N; j++)
+        {
+            g += gcd(i, j);
         }
     }
-    // debug
-    for (int i = 0; i < 2 * r + 1; i++)
-    {
-        for (int j = 0; j < 2 * c + 1; j++)
-        {
-            cout << a[i][j];
-        }
-        cout << '\n';
-    }
+    return g;
 }
 
 int main()
 {
-    cin >> t;
-    for (int tc = 1; tc <= t; tc++)
+
+    while (true)
     {
-        cout << "Case #" << tc << ":\n";
-        solve();
+
+        int n;
+        cin >> n;
+        if (n == 0)
+            break;
+        else
+            cout << calG(n) << endl;
     }
+    // cout << calG(n);
+    return 0;
 }
