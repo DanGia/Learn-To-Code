@@ -72,6 +72,15 @@ public:
     Node(const Point &point = Point(), Node *next = NULL);
     string toString() const;
 };
+Node::Node(const Point &point, Node *next)
+{
+    this->point = point;
+    this->next = next;
+}
+string Node::toString() const
+{
+    return "<Node[" + point.toString() + "]>";
+}
 
 class Path
 {
@@ -82,8 +91,16 @@ private:
     int length;
 
 public:
-    Path();
-    ~Path();
+    Path()
+    {
+        head = NULL;
+        tail = NULL;
+        count = 0;
+        length = -1;
+    }
+    ~Path()
+    {
+    }
 
     void addPoint(int x, int y);
     string toString() const;
