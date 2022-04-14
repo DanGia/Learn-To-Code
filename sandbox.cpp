@@ -1,48 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int gcd(int a, int b)
+#define MOD 1000000007
+#define ll long long
+const long long MAX = 1000005;
+
+ll fact[MAX];
+
+ll expo(ll a, ll b)
 {
-    a = abs(a);
-    b = abs(b);
-    while (a != 0 && b != 0)
+    ll res = 1;
+    a %= MOD;
+    while (b > 0)
     {
-        if (a >= b)
+        if (b % 2 == 1)
         {
-            a %= b;
+            res = (res * a) % MOD;
         }
-        else
-            b %= a;
+        b /= 2;
+        a = (a * a) % MOD;
     }
-    return a + b;
+    return res;
 }
 
-int calG(int N)
+ll inverse(ll b)
 {
-    int g = 0;
-    for (int i = 1; i < N; i++)
-    {
-        for (int j = i + 1; j <= N; j++)
-        {
-            g += gcd(i, j);
-        }
-    }
-    return g;
-}
+    ll x = expo(b, MOD - 2);
 
+    if ((x * b) % MOD == 1)
+    {
+        return x;
+    }
+
+    return -1;
+}
 int main()
 {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
-    while (true)
+    ll n, a, b, d;
+
+    fact[0] = 1;
+    for (int i = 0; i < MAX; i++)
     {
-
-        int n;
-        cin >> n;
-        if (n == 0)
-            break;
-        else
-            cout << calG(n) << endl;
+        fact[i] = (i * fact[i - 1]) % MOD;
     }
-    // cout << calG(n);
+    while (cin >> n >> a >> b >> d)
+    {
+    }
+
     return 0;
 }
