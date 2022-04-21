@@ -9,7 +9,7 @@
 
 // The library here is concretely set, students are not allowed to include any other libraries.
 
-#include "studyInPink3a.h"
+#include "studyInPink3a_tho.h"
 
 using namespace std;
 
@@ -22,8 +22,8 @@ int main(int argc, const char *argv[])
     cout << p2.toString() << endl;
     cout << p2.distanceTo(p1) << endl;
     // Node: simple test
-    Node node1(Point(1, 2));
-    Node node2(Point(2, 3), &node1);
+    Node node1(p1);
+    Node node2(p2, &node1);
     cout << "node 1:" << node1.toString() << endl;
     cout << "node 2:" << node2.toString() << endl;
 

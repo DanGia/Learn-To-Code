@@ -214,7 +214,7 @@ void Character::moveToPoint(int x, int y)
 string Character::toString() const
 {
     string str_path = path->toString();
-    string ans = "<Character[name:" + this->name + ",path" + str_path + "]>";
+    string ans = "<Character[name:" + this->name + ",path:" + str_path + "]>";
     return ans;
 }
 bool rescueSherlock(
