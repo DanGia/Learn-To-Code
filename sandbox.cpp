@@ -1,53 +1,72 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-#define MOD 1000000007
 #define ll long long
-const long long MAX = 1000005;
 
-ll fact[MAX];
-
-ll expo(ll a, ll b)
+ll gcd(ll a, ll b)
 {
-    ll res = 1;
-    a %= MOD;
-    while (b > 0)
+    if (b == 0)
     {
-        if (b % 2 == 1)
-        {
-            res = (res * a) % MOD;
-        }
-        b /= 2;
-        a = (a * a) % MOD;
+        return a;
     }
-    return res;
-}
-
-ll inverse(ll b)
-{
-    ll x = expo(b, MOD - 2);
-
-    if ((x * b) % MOD == 1)
-    {
-        return x;
-    }
-
-    return -1;
+    return gcd(b, a % b);
 }
 int main()
 {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(0);
 
-    ll n, a, b, d;
+    int test;
 
-    fact[0] = 1;
-    for (int i = 0; i < MAX; i++)
+    scanf("%d\n", &test);
+    while (test--)
     {
-        fact[i] = (i * fact[i - 1]) % MOD;
-    }
-    while (cin >> n >> a >> b >> d)
-    {
+
+        ll n = 0;
+
+        string str;
+        ll num[100] = {0};
+
+        getline(cin, str);
+        // cin >> str;
+        ll tmp = 0;
+        ll size = str.length();
+
+        for (ll i = 0; i < size; i++)
+        {
+
+            if (isdigit(str[i]))
+
+                tmp = tmp * 10 + (int)(str[i] - '0');
+            // convert to int
+            else
+            {
+
+                if (tmp > 0)
+                {
+                    num[n++] = tmp;
+                    tmp = 0;
+                }
+            }
+        }
+
+        if (tmp != 0)
+            num[n++] = tmp;
+        if (n == 1)
+        {
+            cout << num[n - 1] << endl; // end
+            continue;
+        }
+        sort(num, num + n);
+        ll res = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                ll temp = gcd(num[j], num[i]);
+                res = (res > temp) ? res : temp;
+            }
+        }
+        cout << res << endl;
     }
 
     return 0;
