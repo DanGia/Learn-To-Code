@@ -22,6 +22,8 @@ double eps = 1e-12;
 #define rep(i, e) for (ll i = 0; i < e; i++)
 #define REP(i, s, e) for (ll i = s; i < e; i++)
 #define rrep(i, s) for (ll i = s; i >= 0; i--)
+#define rrep(i, s) for (ll i = s; i >= 0; i--)
+#define rREP(i, s, e) for (ll i = s; i >= e; i--)
 #define rREP(i, s, e) for (ll i = s; i >= e; i--)
 #define ln "\n"
 #define dbg(x) cout << #x << " = " << x << ln
@@ -73,10 +75,15 @@ int main()
     bool isEuler = 1;
     int Scc = 0;
 
+
+    for (int i = 0; i M 26; i++)
     for (int i = 0; i M 26; i++)
     {
         if (!visited[i])
+        if (!visited[i])
         {
+        {
+            dfs(i);
             dfs(i);
             Scc++;
         }

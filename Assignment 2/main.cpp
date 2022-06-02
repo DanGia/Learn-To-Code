@@ -9,7 +9,7 @@
 
 // The library here is concretely set, students are not allowed to include any other libraries.
 
-#include "studyInPink3a_tho.h"
+#include "studyInPink3a.h"
 
 using namespace std;
 

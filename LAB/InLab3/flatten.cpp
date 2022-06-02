@@ -17,6 +17,7 @@ int *flatten(int **matrix, int r, int c)
 }
 
 int main()
+
 {
     int r = 0, c = 0;
     cin >> r >> c;

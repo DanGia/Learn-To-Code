@@ -1,13 +1,13 @@
 /*
- * Ho Chi Minh City University of Technology
- * Faculty of Computer Science and Engineering
- * Initial code for Assignment 1
- * Programming Fundamentals Spring 2022
- * Author: Vu Van Tien
- * Date: 15.02.2022
- */
+* Ho Chi Minh City University of Technology
+* Faculty of Computer Science and Engineering
+* Initial code for Assignment 1
+* Programming Fundamentals Spring 2022
+* Author: Vu Van Tien
+* Date: 15.02.2022
+*/
 
-// The library here is concretely set, students are not allowed to include any other libraries.
+//The library here is concretely set, students are not allowed to include any other libraries.
 #ifndef studyInPink_h
 #define studyInPink_h
 
@@ -21,9 +21,9 @@
 using namespace std;
 
 ////////////////////////////////////////////////////////////////////////
-/// STUDENT'S ANSWER BEGINS HERE
-/// Complete the following functions
-/// DO NOT modify any parameters in the functions.
+///STUDENT'S ANSWER BEGINS HERE
+///Complete the following functions
+///DO NOT modify any parameters in the functions.
 ////////////////////////////////////////////////////////////////////////
 
 class Point
@@ -39,24 +39,23 @@ public:
 
     int distanceTo(const Point &otherPoint) const;
 };
-Point::Point(int X, int Y)
+Point::Point(int x, int y)
 {
-    x = X;
-    y = Y;
+    this->x = x;
+    this->y = y;
 }
 string Point::toString() const
 {
     string str;
 
-    str = "<Point[" + to_string(x) + "," + to_string(y) + "]>";
+    str = "<Point[" + to_string(this->x) + "," + to_string(this->y) + "]>";
     return str;
 }
 int Point::distanceTo(const Point &otherPoint) const
 {
-    int d;
     int a = otherPoint.x;
     int b = otherPoint.y;
-    d = (int)ceil(sqrt((x - a) * (x - a) + (y - b) * (y - b)));
+    int d = (int)ceil(sqrt((this->x - a) * (this->x - a) + (this->y - b) * (this->y - b)));
     return d;
 }
 
@@ -96,17 +95,21 @@ public:
         this->head = NULL;
         this->tail = NULL;
         this->count = 0;
-        this->length = -1;
+        this->length = -1;  
     }
     ~Path()
     {
         for (int i = 0; i < this->count; i++)
         {
             Node *p = this->head;
-            this->head = p->next;
-            delete p;
+            if (p != nullptr)
+            {
+                this->head = p->next;
+                delete p;
+            }
         }
-        this->head = NULL;
+
+        // this->head = NULL;
         this->tail = NULL;
     }
     void setLength()
@@ -124,18 +127,18 @@ public:
 
 void Path::addPoint(int x, int y)
 {
-    Node *r = new Node(Point(x, y));
+    Node *pt = new Node(Point(x, y));
     if (this->head == NULL)
     {
-        this->head = r;
-        this->tail = r;
+        this->head = pt;
+        this->tail = pt;
         this->length = 0;
     }
     else
     {
-        this->length = this->length + this->tail->point.distanceTo(r->point);
-        this->tail->next = r;
-        this->tail = r;
+        this->length = this->length + this->tail->point.distanceTo(pt->point);
+        this->tail->next = pt;
+        this->tail = pt;
     }
     this->count += 1;
 }
@@ -160,7 +163,7 @@ string Path::toString() const
 Point Path::getLastPoint() const
 {
     Point p = tail->point;
-    return p; // taike the last point in the linked list
+    return p; // take the last point in the linked list
 }
 
 class Character
@@ -174,9 +177,10 @@ public:
     {
         this->name = name;
         this->path = new Path;
-    }
+    } 
     ~Character()
     {
+        //(*path).~Path();
         delete path; // xoa node path
     }
     void setPath()

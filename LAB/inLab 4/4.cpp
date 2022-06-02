@@ -8,7 +8,7 @@ public:
     ~Array();
     void print();
 
-    Array(const Array<T> &other); // Copy Constructor
+    Array(const Array<T> &other); // Copy Conustructor
 
 private:
     int size;
