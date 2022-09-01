@@ -53,9 +53,10 @@ void replaceString(string s, string s1, string s2)
     }
     cout << result;
 }
-int main(){
+int main()
+{
     string s = "Truong Dai Hoc Bach Khoa, Sai Gon";
     string s1 = "ai";
     string s2 = "ong";
-    replaceString(s, s1, s2);   
+    replaceString(s, s1, s2);
 }
